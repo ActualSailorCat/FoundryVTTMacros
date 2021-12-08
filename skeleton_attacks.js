@@ -43,7 +43,6 @@ function sc_massshockingskellies(rollType) {
                                 dMG = '2d6';
                                 if (rollTot1 === 20) { rollStr1a = '<span style=\"color: green\">' + rollStr1a + '</span>' }
                             }
-                            //rollArmy = ( rollArmy + (y + 1) + '. ATK ' + rollStr1a + rollStr1b + '<span style=\"text-align: right !important\"> — DMG [[' + dMG + '+ 2 + ' + valkprof + ']]</span><br>');
                             rollArmy = ( rollArmy + '<div class="row" style="display:flex; border-bottom:1px dotted black; padding: 2px"><div style="flex: 70%; text-align:left; ">' + (y + 1) + '. ATK ' + rollStr1a + rollStr1b + '</div><div style="flex: 30%; text-align:left; border-left:1px solid black; padding-left:2px">  DMG [[' + dMG + '+ 2 + ' + valkprof + ']]</span></div></div>');
                         }
                         break;
