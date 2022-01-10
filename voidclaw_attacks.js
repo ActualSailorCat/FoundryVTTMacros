@@ -1,5 +1,5 @@
 // Function BEGIN
-function sc_massshockingskellies(rollType) {
+async function sc_massshockingskellies(rollType) {
     let confirmed = false;
     var rollArmy = "<b>Voidclaw Skeletons.</b><br><span style=\"font-size:0.8em\"><b>Null Touch.</b> The voidclaw attacks with claws exuding a deep dark aura. On a hit, if the target is a creature other than an elf or undead, it must succeed on a [[/r 1d20 + @abilities.con.save]]{DC 10 Constitution} saving throw or be paralyzed for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.</span><br><br>";
     new Dialog({
@@ -25,7 +25,7 @@ function sc_massshockingskellies(rollType) {
             }
         },
         default: "Cancel",
-        close: html => {
+        close: async html => {
             if (confirmed) {
                 let valk = game.data.actors.find(c => c.name === "Valkrana Vil Galath Faeri Miraquinal");
                 let valkprof = valk.data.attributes.prof;
@@ -33,7 +33,7 @@ function sc_massshockingskellies(rollType) {
                 switch (rollType) {
                     case "NOR":
                         for (let y = 0; y < rolltimes; y++) {
-                            let roll1   = new Roll('1d20').roll();    
+                            let roll1   = await new Roll('1d20').roll();    
                             game.dice3d.showForRoll(roll1);
                             let rollTot1 = roll1.total;
                             let rollStr1a = '<b>' + (rollTot1 + 4) + '</b>';
@@ -49,9 +49,9 @@ function sc_massshockingskellies(rollType) {
                         break;
                     case "ADV":
                          for (let y = 0; y < rolltimes; y++) {
-                            let roll1       = new Roll('1d20').roll();  // Rolls die mechanically.
+                            let roll1       = await new Roll('1d20').roll();  // Rolls die mechanically.
                             game.dice3d.showForRoll(roll1);             // Rolls die visually.
-                            let roll2       = new Roll('1d20').roll();    
+                            let roll2       = await new Roll('1d20').roll();    
                             game.dice3d.showForRoll(roll2);
                             let rollTot1    = roll1.total;
                             let rollTot2    = roll2.total;   
@@ -102,9 +102,9 @@ function sc_massshockingskellies(rollType) {
                         break;
                     case "DIS":
                          for (let y = 0; y < rolltimes; y++) {
-                            let roll1       = new Roll('1d20').roll();  // Rolls die mechanically.
+                            let roll1       = await new Roll('1d20').roll();  // Rolls die mechanically.
                             game.dice3d.showForRoll(roll1);             // Rolls die visually.
-                            let roll2       = new Roll('1d20').roll();    
+                            let roll2       = await new Roll('1d20').roll();    
                             game.dice3d.showForRoll(roll2);
                             let rollTot1    = roll1.total;
                             let rollTot2    = roll2.total;   
