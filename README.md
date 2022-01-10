@@ -7,5 +7,4 @@ In order to tailor these to your character, you will need to change at least the
 <ul>
 <li>Attacks: Change "Valkrana Vil Galath Faeri Miraquinal" to the name of your character. This adds the damage from the Undead Thralls class feature to your minions' attacks.</li>
 <li>Attacks: Note that the attacks macros are tailored to skeletons. The '4' in the rollStr1a, rollStr1b, rollStr2a, rollStr2b variables represent a skeleton's proficiency bonus + DEX modifier, and will need to be changed. If your minion's damage roll isn't a 1d6, that will also need to be changed in both instances of the dMG variable.</li>
-<li>Saves: Change "Skeleton Generic" to the name used on your minion's character sheet. This is how the macro pulls ability score modifiers.</li>
 </ul>  
