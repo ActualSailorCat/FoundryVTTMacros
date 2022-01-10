@@ -1,6 +1,6 @@
 // SAVES
 // Function BEGIN
-function valkskellysaves(skellymod, abilityName) {
+async function valkskellysaves(skellymod, abilityName) {
     let confirmed = false;
     let confirmed2 = false;
     var rollArmy = "";
@@ -29,14 +29,14 @@ function valkskellysaves(skellymod, abilityName) {
             }
         },
         default: "Cancel",
-        close: html => {
+        close: async html => {
             if (confirmed) {
                 rollArmy = rollArmy + '<b>Hrrrngh! Skeleton Saves!</b><br><br>';
                 let rolltimes = parseInt(html.find('[name=rollnumber]')[0].value);
                 for (let y = 0; y < rolltimes; y++) {
-                    let roll1   = new Roll('1d20').roll();    
+                    let roll1   = await new Roll('1d20').roll();    
                     game.dice3d.showForRoll(roll1);
-                    let roll2   = new Roll('1d20').roll();    
+                    let roll2   = await new Roll('1d20').roll();    
                     game.dice3d.showForRoll(roll2);
                     let rollTot1 = roll1.total;
                     let rollTot2 = roll2.total;
@@ -82,40 +82,46 @@ new Dialog({
             label: "Confirm",
             callback: (html) => {
                 let abilityName = html.find("[name=abilityName]")[0].value;
-                let skelly = game.data.actors.find(c => c.name === "Skeleton Generic");
+                //let skelly = game.data.actors.find(c => c.name === "Skeleton Generic");
+                let sc_selected = canvas.tokens.controlled[0];
+                if (sc_selected.length > 1 || sc_selected.length === 0){
+                    ui.notifications.error("Please select only one token")
+                    return;
+                }
+                let skelly = sc_selected.actor.data.data;
                 switch (abilityName) {
                     case "STR": {
-                        let skellymod = skelly.data.abilities.str.mod;
+                        let skellymod = skelly.abilities.str.mod;
                         valkskellysaves(skellymod, abilityName);
                     }
                     break;
 
                     case "DEX": {
-                        let skellymod = skelly.data.abilities.dex.mod;
+                        let skellymod = skelly.abilities.dex.mod;
                         valkskellysaves(skellymod, abilityName);
                     }
                     break;
 
                     case "CON": {
-                        let skellymod = skelly.data.abilities.con.mod;
+                        let skellymod = skelly.abilities.con.mod;
                         valkskellysaves(skellymod, abilityName);
                     }
                     break;
 
                     case "INT": {
-                        let skellymod = skelly.data.abilities.int.mod;
+                        let skellymod = skelly.abilities.int.mod;
                         valkskellysaves(skellymod, abilityName);
                     }
                     break;
 
                     case "WIS": {
-                        let skellymod = skelly.data.abilities.wis.mod;
+                        let skellymod = skelly.abilities.wis.mod;
                         valkskellysaves(skellymod, abilityName);
                     }
                     break;
 
                     case "CHA": {
-                        let skellymod = skelly.data.abilities.cha.mod;
+                        let skellymod = skelly.abilities.cha.mod;
                         valkskellysaves(skellymod, abilityName);
                     }
                     break;
