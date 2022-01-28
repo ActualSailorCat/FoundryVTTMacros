@@ -25,9 +25,9 @@ async function sc_massshockingskellies(rollType) {
             }
         },
         default: "Cancel",
-        close: html => {
+        close: async html => {
             if (confirmed) {
-                let valk = game.data.actors.find(c => c.name === "Valkrana Vil Galath Faeri Miraquinal");
+                let valk = game.data.actors.find(c => c.name === "Valkrana Miraquinal");
                 let valkprof = valk.data.attributes.prof;
                 let rolltimes = parseInt(html.find('[name=rollnumber]')[0].value);
                 switch (rollType) {
